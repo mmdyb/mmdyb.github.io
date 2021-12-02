@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>S T A R</title>
+  <link rel="shortcut icon" href="./assets/img/fav.png" type="image/x-icon">
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Sen&amp;display=swap'>
+  <link rel="stylesheet" href="./assets/css/main.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;300;400;500&family=Raleway:wght@100;200;300;400;500&family=Roboto:wght@300;400;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+    integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.3/particles.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+    integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+</head>
+
+<body>
+  <div id="main">
+    <h2 class="t-1">S T A R</h2>
+    <div class="content">
+      <p class="arrows">
+        <kbd>
+          <i class="fas fa-sort-down arrow1"></i>
+        </kbd>
+        <kbd>
+          <i class="fas fa-sort-up arrow2"></i>
+        </kbd>
+      </p>
+      <a href="" target="_blank">
+        <img src="./assets/img/instagram.svg" style="height: 30px; width: 30px;">
+      </a>
+      ●
+      <a href="" target="_blank">
+        <img src="./assets/img/discord.svg" style="height: 30px; width: 30px;">
+      </a>
+    </div>
+
+    <span class="slid"></span>
+    <div class="buttons">
+      <button class="next" onclick="go(-1)"></button>
+      <button class="prev" onclick="go(1)"></button>
+    </div>
+    <div class="equalizer">
+      <div class="line-scale-pulse-out">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+  <canvas class="background"></canvas>
+  <!-- scripts -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="./assets/js/titleEffect.jquery.min.js"></script>
+  <script>
+    $(function () {
+      $.titleEffect({
+        delay: 500,
+        effect: 'replace', // blink, scroll, replace
+        separator: ',',
+        titles: [
+          'S',
+          'S T',
+          'S T A',
+          'S T A R',
+          'S T A R',
+          'S T A',
+          'S T',
+          'S'
+        ]
+      });
+    });
+  </script>
+  <script>
+    window.onload = function () {
+      Particles.init({
+        selector: ".background"
+      });
+    };
+    var particles = Particles.init({
+      selector: ".background",
+      color: ["#9D63FA", "#a100ff", "#000000"],
+      connectParticles: true,
+      responsive: [
+        {
+          breakpoint: 768,
+          options: {
+            color: ["#faebd7", "#03dac6", "#ff0266"],
+            maxParticles: 43,
+            connectParticles: false
+          }
+        }
+      ]
+    });
+
+    class NavigationPage {
+      constructor() {
+        this.currentId = null;
+        this.currentTab = null;
+        this.tabContainerHeight = 70;
+        this.lastScroll = 0;
+        let self = this;
+        $(".nav-tab").click(function () {
+          self.onTabClick(event, $(this));
+        });
+        $(window).scroll(() => {
+          this.onScroll();
+        });
+        $(window).resize(() => {
+          this.onResize();
+        });
+      }
+
+      onTabClick(event, element) {
+        event.preventDefault();
+        let scrollTop =
+          $(element.attr("href")).offset().top - this.tabContainerHeight + 1;
+        $("html, body").animate({ scrollTop: scrollTop }, 600);
+      }
+
+      onScroll() {
+        this.checkHeaderPosition();
+        this.findCurrentTabSelector();
+        this.lastScroll = $(window).scrollTop();
+      }
+
+      onResize() {
+        if (this.currentId) {
+          this.setSliderCss();
+        }
+      }
+
+      checkHeaderPosition() {
+        const headerHeight = 75;
+        if ($(window).scrollTop() > headerHeight) {
+          $(".header").addClass("header--scrolled");
+        } else {
+          $(".header").removeClass("header--scrolled");
+        }
+        let offset =
+          $(".nav").offset().top +
+          $(".nav").height() -
+          this.tabContainerHeight -
+          headerHeight;
+        if (
+          $(window).scrollTop() > this.lastScroll &&
+          $(window).scrollTop() > offset
+        ) {
+          $(".header").addClass("et-header--move-up");
+          $(".nav-container").removeClass("nav-container--top-first");
+          $(".nav-container").addClass("nav-container--top-second");
+        } else if (
+          $(window).scrollTop() < this.lastScroll &&
+          $(window).scrollTop() > offset
+        ) {
+          $(".header").removeClass("et-header--move-up");
+          $(".nav-container").removeClass("nav-container--top-second");
+          $(".et-hero-tabs-container").addClass(
+            "et-hero-tabs-container--top-first"
+          );
+        } else {
+          $(".header").removeClass("header--move-up");
+          $(".nav-container").removeClass("nav-container--top-first");
+          $(".nav-container").removeClass("nav-container--top-second");
+        }
+      }
+
+      findCurrentTabSelector(element) {
+        let newCurrentId;
+        let newCurrentTab;
+        let self = this;
+        $(".nav-tab").each(function () {
+          let id = $(this).attr("href");
+          let offsetTop = $(id).offset().top - self.tabContainerHeight;
+          let offsetBottom =
+            $(id).offset().top + $(id).height() - self.tabContainerHeight;
+          if (
+            $(window).scrollTop() > offsetTop &&
+            $(window).scrollTop() < offsetBottom
+          ) {
+            newCurrentId = id;
+            newCurrentTab = $(this);
+          }
+        });
+        if (this.currentId != newCurrentId || this.currentId === null) {
+          this.currentId = newCurrentId;
+          this.currentTab = newCurrentTab;
+          this.setSliderCss();
+        }
+      }
+
+      setSliderCss() {
+        let width = 0;
+        let left = 0;
+        if (this.currentTab) {
+          width = this.currentTab.css("width");
+          left = this.currentTab.offset().left;
+        }
+        $(".nav-tab-slider").css("width", width);
+        $(".nav-tab-slider").css("left", left);
+      }
+    }
+
+    new NavigationPage();
+  </script>
+  <script>
+    $('body').append('<div id="load-r" class="loading"><div id="loader"> <div class="ls-particles ls-part-1"></div> <div class="ls-particles ls-part-2"></div> <div class="ls-particles ls-part-3"></div> <div class="ls-particles ls-part-4"></div> <div class="ls-particles ls-part-5"></div> <div class="lightsaber ls-left ls-green"></div> <div class="lightsaber ls-right ls-red"></div> </div> </div>');
+
+    $(window).on('load', function () {
+      setTimeout(removeLoader, 2600); //wait for page load PLUS two seconds.
+    });
+    function removeLoader() {
+      $("#load-r").fadeOut(500, function () {
+        // fadeOut complete. Remove the loading div
+        $("#load-r").remove(); //makes page more lightweight 
+      });
+    }
+  </script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.8.1/gl-matrix-min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js'></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="./assets/js/script.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/lettering.js/0.6.1/jquery.lettering.min.js'></script>
+  <script>
+    function Ticker(elem) {
+      elem.lettering();
+      this.done = false;
+      this.cycleCount = 5;
+      this.cycleCurrent = 0;
+      this.chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()-_=+{}|[]\\;\':"<>?,./`~'.split('');
+      this.charsCount = this.chars.length;
+      this.letters = elem.find('span');
+      this.letterCount = this.letters.length;
+      this.letterCurrent = 0;
+
+      this.letters.each(function () {
+        var $this = $(this);
+        $this.attr('data-orig', $this.text());
+        $this.text('-');
+      });
+    }
+
+    Ticker.prototype.getChar = function () {
+      return this.chars[Math.floor(Math.random() * this.charsCount)];
+    };
+
+    Ticker.prototype.reset = function () {
+      this.done = false;
+      this.cycleCurrent = 0;
+      this.letterCurrent = 0;
+      this.letters.each(function () {
+        var $this = $(this);
+        $this.text($this.attr('data-orig'));
+        $this.removeClass('done');
+      });
+      this.loop();
+    };
+
+    Ticker.prototype.loop = function () {
+      var self = this;
+
+      this.letters.each(function (index, elem) {
+        var $elem = $(elem);
+        if (index >= self.letterCurrent) {
+          if ($elem.text() !== ' ') {
+            $elem.text(self.getChar());
+            $elem.css('opacity', Math.random());
+          }
+        }
+      });
+
+      if (this.cycleCurrent < this.cycleCount) {
+        this.cycleCurrent++;
+      } else if (this.letterCurrent < this.letterCount) {
+        var currLetter = this.letters.eq(this.letterCurrent);
+        this.cycleCurrent = 0;
+        currLetter.text(currLetter.attr('data-orig')).css('opacity', 1).addClass('done');
+        this.letterCurrent++;
+      } else {
+        this.done = true;
+      }
+
+      if (!this.done) {
+        requestAnimationFrame(function () {
+          self.loop();
+        });
+      } else {
+        setTimeout(function () {
+          self.reset();
+        }, 5000);
+      }
+    };
+
+    $words = $('.t-1');
+
+    $words.each(function () {
+      var $this = $(this),
+        ticker = new Ticker($this).reset();
+      $this.data('ticker', ticker);
+    });
+  </script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+</body>
+
+</html>
