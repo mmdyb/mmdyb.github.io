@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <title>S T A R</title>
   <link rel="shortcut icon" href="./assets/img/fav.png" type="image/x-icon">
-  <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Sen&amp;display=swap'>
   <link rel="stylesheet" href="./assets/css/main.css">
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Sen&amp;display=swap'>
   <link
     href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;300;400;500&family=Raleway:wght@100;200;300;400;500&family=Roboto:wght@300;400;700&display=swap"
     rel="stylesheet">
@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
     integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
 </head>
 
 <body>
@@ -56,10 +57,9 @@
     </div>
   </div>
   <canvas class="background"></canvas>
+
   <!-- scripts -->
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
   <script src="./assets/js/titleEffect.jquery.min.js"></script>
   <script>
     $(function () {
@@ -68,14 +68,22 @@
         effect: 'replace', // blink, scroll, replace
         separator: ',',
         titles: [
-          'S',
-          'S T',
-          'S T A',
-          'S T A R',
-          'S T A R',
-          'S T A',
-          'S T',
-          'S'
+          "𝗦",
+          "𝗦 𝗧",
+          "𝗦 𝗧 𝗔",
+          "𝗦 𝗧 𝗔 𝗥",
+          "𝗦 𝗧 𝗔 𝗥",
+          "𝗦 𝗧 𝗔",
+          "𝗦 𝗧",
+          "𝗦"
+          // 'S',
+          // 'S T',
+          // 'S T A',
+          // 'S T A R',
+          // 'S T A R',
+          // 'S T A',
+          // 'S T',
+          // 'S'
         ]
       });
     });
@@ -227,10 +235,8 @@
   </script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.8.1/gl-matrix-min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js'></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script src="./assets/js/script.js"></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/lettering.js/0.6.1/jquery.lettering.min.js'></script>
+  <script src="./assets/js/script.js"></script>
   <script>
     function Ticker(elem) {
       elem.lettering();
@@ -309,7 +315,6 @@
       $this.data('ticker', ticker);
     });
   </script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
 </body>
 
 </html>
