@@ -15,7 +15,7 @@ body {
 }
 @font-face {
     font-family: Star;
-    src: url(../font/star.ttf);
+    src: url(https://github.com/GoldenStarq/GoldenStarq.github.io/raw/Star/assets/font/Star.ttf);
 }
 #main {
     display: flex;
