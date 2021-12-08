@@ -15,11 +15,11 @@ body {
 }
 @font-face {
     font-family: Star;
-    src: url(../font/star.ttf);
+    src: url(https://raw.githubusercontent.com/GoldenStarq/GoldenStarq.github.io/Star/assets/font/Star.ttf);
 }
 @font-face {
     font-family: Starx;
-    src: url(../font/RobotoMono.ttf);
+    src: url(https://raw.githubusercontent.com/GoldenStarq/GoldenStarq.github.io/Star/assets/font/RobotoMono.ttf);
 }
 #main {
     display: flex;
