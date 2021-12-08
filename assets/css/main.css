@@ -9,13 +9,17 @@ body {
     box-sizing: border-box;
     outline: none;
     -webkit-tap-highlight-color: transparent;
-    /* cursor: none; */
+    cursor: none;
     user-select: none;
     -webkit-user-drag: none;
 }
 @font-face {
     font-family: Star;
-    src: url(https://raw.githubusercontent.com/GoldenStarq/GoldenStarq.github.io/Star/assets/font/Star.ttf);
+    src: url(../font/star.ttf);
+}
+@font-face {
+    font-family: Starx;
+    src: url(../font/RobotoMono.ttf);
 }
 #main {
     display: flex;
@@ -150,7 +154,7 @@ body {
 }
 
 .slid {
-    width: 150px;
+    width: 200px;
     height: 1px;
     border-radius: 50%;
     background: #fff;
@@ -1388,8 +1392,6 @@ body {
 
 .tooltipx {
     position: relative;
-    /* display: inline-block; */
-    border-bottom: 1px dotted black;
 }
 
 /* Tooltip text */
@@ -1409,4 +1411,55 @@ body {
 }
 .tooltipx:hover .tooltiptext {
     visibility: visible;
+}
+.typing {
+    font-size: 10px;
+    position: absolute;
+    top: 57%;
+    transform: translateY(-50%);
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 99;
+    color: white;
+    text-align: center;
+    mix-blend-mode: overlay;
+}
+.typing.animate {
+    width: 31ch;
+    border-right: 0.1em solid black;
+    font-family: Starx;
+    animation: type 5s steps(20), writer 1s infinite alternate,
+        delete 10s steps(5) 5s forwards;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.typing.animate::before {
+    content: "Official web site of GoldenStar";
+}
+
+@keyframes type {
+    from {
+        width: 0;
+    }
+    to {
+        width: 31ch;
+    }
+}
+
+@keyframes writer {
+    50% {
+        border-color: transparent;
+    }
+}
+
+@keyframes delete {
+    from {
+        width: 31ch;
+    }
+    to {
+        width: 0ch;
+    }
 }
