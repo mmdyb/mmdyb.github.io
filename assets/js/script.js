@@ -2,6 +2,7 @@ const cols = 3;
 const main = document.getElementById('main');
 let parts = [];
 
+// backgrounds
 let images = [
   "https://images.unsplash.com/photo-1650979280332-01568b425ffa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80",
   "https://images.unsplash.com/photo-1638090479610-2d2deb27fa81?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80",
